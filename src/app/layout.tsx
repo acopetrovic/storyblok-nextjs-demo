@@ -1,8 +1,12 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import {storyblokInit, apiPlugin} from "@storyblok/react/rsc";
 import { StoryblokProvider } from "./components/StoryblokProvider";
+import Link from "next/link";
+
+const inter = Inter({subsets: ["latin"]});
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -44,9 +48,14 @@ export default function RootLayout({
     <StoryblokProvider>
       <html lang="en">
         <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+          className={`${inter.className} bg-blue-50`}
           >
-          <div>Layout Z</div>
+          <header>
+            <nav className="container mx-auto px-4 w-full py-8 flex justify-between">
+              <Link href={"/"}>Home</Link>
+              <Link href={"/tours"}>Tours</Link>  
+            </nav>
+          </header>
           {children}
         </body>
       </html>
